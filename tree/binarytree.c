@@ -2,13 +2,15 @@
 #include<malloc.h>
 #include"binarytree.h"
 
-void init_stack(TreeStack **ts){
+void // initiate treestack
+init_stack(TreeStack **ts){
 	*ts=(TreeStack *)malloc(sizeof(struct StackNode));
 	(*ts)->next=NULL;
 	(*ts)->tree=NULL;
 }
 
-int stackEmpty(TreeStack *ts){
+int 
+stackEmpty(TreeStack *ts){
 	if(ts == NULL || 
 		(ts->tree == NULL && ts->next == NULL))
 		return 1;
@@ -16,7 +18,8 @@ int stackEmpty(TreeStack *ts){
 		return 0;
 }
 
-void push(TreeStack **ts,BinaryTreeNode *p){
+void //push
+push(TreeStack **ts,BinaryTreeNode *p){
 	struct StackNode *pNew;
 	pNew=(SNode *)malloc(sizeof(SNode));
 	pNew->tree=p;
@@ -24,7 +27,8 @@ void push(TreeStack **ts,BinaryTreeNode *p){
 	*ts=pNew;
 }
 
-void pop(TreeStack **ts,BinaryTreeNode **p){
+void //pop
+pop(TreeStack **ts,BinaryTreeNode **p){
 	if(*ts == NULL)
 		return;
 	
@@ -39,7 +43,8 @@ void pop(TreeStack **ts,BinaryTreeNode **p){
 	free(d);
 }
 
-int GetTop(TreeStack *T,BinaryTreeNode **p){
+int //get top treenode
+GetTop(TreeStack *T,BinaryTreeNode **p){
 	if(!stackEmpty(T))
 		*p=T->tree;
 	else{
@@ -49,7 +54,7 @@ int GetTop(TreeStack *T,BinaryTreeNode **p){
 	return 1;
 }
 
-void
+void //initiate treequeue
 init_queue(TreeQueue **tq){
 	*tq=(TreeQueue*)malloc(sizeof(TreeQueue));
 	(*tq)->front=NULL;
@@ -65,7 +70,7 @@ queueEmpty(TreeQueue *tq){
 		return 0;
 }
 
-void 
+void //in
 enQueue(TreeQueue **tq,BinaryTreeNode *p){
 	if(tq == NULL) return;
 	QNode *qn=(QNode*)malloc(sizeof(struct QueueNode));
@@ -82,7 +87,7 @@ enQueue(TreeQueue **tq,BinaryTreeNode *p){
 	}
 }
 
-void 
+void //out
 deQueue(TreeQueue **tq,BinaryTreeNode **p){
 	if(queueEmpty(*tq))
 		return;
@@ -146,7 +151,8 @@ PostOrder(BinaryTree *T){
 	}
 }
 
-void PreOrderTraverse(BinaryTree *T){
+void //non-recursive traversing
+PreOrderTraverse(BinaryTree *T){
 	TreeStack *ts;
 	BinaryTreeNode *p;
 	init_stack(&ts);
@@ -164,7 +170,8 @@ void PreOrderTraverse(BinaryTree *T){
 	}
 }
 
-void InOrderTraverse1(BinaryTree *T){
+void 
+InOrderTraverse1(BinaryTree *T){
 	TreeStack *ts;
 	BinaryTreeNode *p;
 	init_stack(&ts);
@@ -181,7 +188,8 @@ void InOrderTraverse1(BinaryTree *T){
 	}
 }
 
-void InOrderTraverse2(BinaryTree *T){
+void 
+InOrderTraverse2(BinaryTree *T){
 	TreeStack *ts;
 	BinaryTreeNode *p;
 	init_stack(&ts);
@@ -198,7 +206,8 @@ void InOrderTraverse2(BinaryTree *T){
 	}
 }
 
-void PostOrderTraverse(BinaryTree *T){
+void 
+PostOrderTraverse(BinaryTree *T){
 	TreeStack *ts;
 	BinaryTreeNode *p,*r;
 	init_stack(&ts);
