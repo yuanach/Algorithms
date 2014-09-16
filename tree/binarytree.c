@@ -10,7 +10,7 @@ init_stack(TreeStack **ts){
 }
 
 int 
-stackEmpty(TreeStack *ts){
+stackEmpty(const TreeStack *ts){
 	if(ts == NULL || 
 		(ts->tree == NULL && ts->next == NULL))
 		return 1;
@@ -44,7 +44,7 @@ pop(TreeStack **ts,BinaryTreeNode **p){
 }
 
 int //get top treenode
-GetTop(TreeStack *T,BinaryTreeNode **p){
+GetTop(const TreeStack *T,BinaryTreeNode **p){
 	if(!stackEmpty(T))
 		*p=T->tree;
 	else{
@@ -62,7 +62,7 @@ init_queue(TreeQueue **tq){
 }
 
 int
-queueEmpty(TreeQueue *tq){
+queueEmpty(const TreeQueue *tq){
 	if(tq == NULL || 
 		(tq->front == NULL && tq->rear == NULL))
 		return 1;
@@ -120,7 +120,7 @@ CreateBinaryTree(BinaryTree **T){
 }
 
 void
-visit(BinaryTree *T){
+visit(const BinaryTree *T){
 	printf("%x",T->m_nValue);
 }
 
