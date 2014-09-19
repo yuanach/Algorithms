@@ -2,7 +2,8 @@
 #include<malloc.h>
 #include"linklist.h"
 
-ListNode *get_node(ListNode **list,int n){
+ListNode
+*get_node(ListNode **list,int n){
 	int i=1;
 	ListNode *p=*list;
 	if(n<1) return NULL;
@@ -11,7 +12,8 @@ ListNode *get_node(ListNode **list,int n){
 	return p;
 }
 
-void remove_node(ListNode **list,int i){
+void
+remove_node(ListNode **list,int i){
 	int j=1;
 	ListNode *p=*list;
 	ListNode *pDeleted=NULL;
@@ -24,7 +26,8 @@ void remove_node(ListNode **list,int i){
 	free(pDeleted);
 }
 
-void insert_node(ListNode **list,int i,int value){
+void
+insert_node(ListNode **list,int i,int value){
 	ListNode *pNew=(ListNode *)malloc(sizeof(ListNode));
 	pNew->m_nValue=value;
 	pNew->next=NULL;
@@ -59,14 +62,16 @@ add_tail(ListNode **list,int value){
 	}
 }
 
-ListNode *locate_value(ListNode *list,int value){
+ListNode
+*locate_value(ListNode *list,int value){
 	ListNode *p=list;
 	while(p && p->m_nValue != value)
 		p=p->next;
 	return p;
 }
 
-void remove_value(ListNode **list,int value){
+void
+remove_value(ListNode **list,int value){
 	if(list == NULL || *list == NULL)
 		return;
 	ListNode *pDeleted=NULL;
