@@ -121,7 +121,7 @@ CreateBinaryTree(BinaryTree **T){
 
 void
 visit(const BinaryTree *T){
-	printf("%x",T->m_nValue);
+	printf("%d ",T->m_nValue);
 }
 
 void
@@ -253,10 +253,41 @@ LevelOrderTraverse(BinaryTree *T){
 	}
 }
 
+void
+CreateInThread(ThreadTree *T){
+	ThreadTreeNode *pre=NULL;
+	if(T != NULL){
+		InThread(T,pre);
+		pre->rchild=NULL;
+		pre->rtag=1;
+	}
+}
+
+void
+InThread(ThreadTree *p,ThreadTreeNode *pre){
+	if(p != NULL){
+		InThread(p->lchild,pre);
+		if(p->lchild == NULL){
+			p->lchild=p;
+			p->ltag=1;
+		}
+		if(pre != NULL && pre->rchild == NULL){
+			pre->rchild=p;
+			pre->rtag=1;
+		}
+		pre=p;
+		InThread(p->rchild,pre);
+	}
+}
+
 int main(){
 	BinaryTree *t;
 	BinaryTreeNode *p;
-	CreateBinaryTree(&t);
+	BSTNode *bp;
+	int A[]={40,72,38,35,67,51,90,8,55,21};
+	create_bst(&t,A,10);
+	bp=bst_search(t,72,bp);
+//	CreateBinaryTree(&t);
 /*
 	t=(BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
 	t2=(BinaryTreeNode*)malloc(sizeof(BinaryTreeNode));
@@ -290,6 +321,6 @@ int main(){
 //	PreOrderTraverse(t);
 //	InOrderTraverse2(t);
 //	PostOrderTraverse(t);
-	LevelOrderTraverse(t);
+//	LevelOrderTraverse(t);
 return 0;
 }

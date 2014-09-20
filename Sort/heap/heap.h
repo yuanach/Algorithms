@@ -18,8 +18,6 @@ typedef struct {
 	int elem_size;
 }Heap;
 
-void max_heapify(int [],int);
-
 /*
  * @pseudo code
  *
