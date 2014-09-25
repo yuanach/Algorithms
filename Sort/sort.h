@@ -5,6 +5,7 @@
  *      Author: Administrator
  */
 
+#define _QUICK_SORT_PARTITION_TYPE_ 1
 
 #define HEAP_LENGTH 10
 
