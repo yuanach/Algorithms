@@ -138,39 +138,43 @@ SelectionSort(int *A,const int length){
 }
 
 void
-max_heapify(Heap *A,int i){
+max_heapify(Heap *H,const int i){
 	int left = 2*i,
 				right=2*i+1,
 				largest;
 
-		if( left < A->heap_size && A->L[left] > A->L[i])
+		if( left < H->heap_size && H->L[left] > H->L[i])
 			largest=left;
 		else largest=i;
-		if( right < A->heap_size && A->L[right] > A->L[largest])
+		if( right < H->heap_size && H->L[right] > H->L[largest])
 			largest=right;
 
 		if(i != largest){
-			swap(&A->L[i],&A->L[largest]);
-			max_heapify(A,largest);
+			swap(&H->L[i],&H->L[largest]);
+			max_heapify(H,largest);
 		}
 }
 
 void
-build_max_heap(Heap *A){
+build_max_heap(Heap *H){
 	int i;
-	A->heap_size=A->length;
-	for(i=(A->length-1)/2;i>=0;i--)
-			max_heapify(A,i);
+	H->heap_size=H->length;
+	for(i=(H->length-1)/2;i>=0;i--)
+			max_heapify(H,i);
 }
 
 void
-HeapSort(Heap *A){
+HeapSort(int *A,const int length){
+	Heap *H=(Heap *)malloc(sizeof(Heap));
+	H->L=A;
+	H->length=length;
+
 	int i;
-	build_max_heap(A);
-	for(i=A->length-1;i>0;i--){
-		swap(&A->L[0],&A->L[i]);
-		A->heap_size--;
-		max_heapify(A,0);
+	build_max_heap(H);
+	for(i=H->length-1;i>0;i--){
+		swap(&H->L[0],&H->L[i]);
+		H->heap_size--;
+		max_heapify(H,0);
 	}
 }
 
@@ -205,10 +209,10 @@ MergeSort(int *A,int *tmpArr,const int left,const int right){
 
 
 int main(){
-    Heap *H=(Heap *)malloc(sizeof(Heap));
+
 	int A[]={40,72,38,35,67,51,90,8,55,21};
 	int i;
-	H->L=A; H->length=sizeof(A)/sizeof(A[0]);
+
 
 //    int *tmpArr=(int *)malloc(sizeof(A));
 //	InsertSort(A,10);
@@ -217,11 +221,11 @@ int main(){
 //	BubbleSort(A,10);
 //	QuickSort(A,0,9);
 //	SelectionSort(A,10);
-//    HeapSort(H);
+//    HeapSort(A,10);
 //	MergeSort(A,tmpArr,0,9);
 
 	for(i=0;i<10;i++)
-		printf("%d ",H->L[i]);
+		printf("%d ",A[i]);
 	printf("\n");
 	return 0;
 }
